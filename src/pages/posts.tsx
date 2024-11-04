@@ -4,18 +4,20 @@ import { fetchPostsList } from "../apis/users.api";
 import React from "react";
 import PostCard from "../components/PostCard";
 import { Link } from "react-router-dom";
-// import { IPost } from "../types/posts.type";
+
 
 export const PostsPage: React.FC = () => {
+  const [skip, setSkip] = React.useState(0);
+  const limit = 30;
+
   const posts = useQuery({
-    queryKey: ["fetching-posts"],
-    queryFn: fetchPostsList,
+    queryKey: ["fetching-posts", skip],
+    queryFn: () => fetchPostsList(skip, limit),
   });
 
-  React.useEffect(() => {
-    console.log(posts.data);
-    console.log("posts", posts.data?.posts);
-  }, [posts]);
+  const loadMore = () => {
+    setSkip(skip + limit);
+  };
 
   React.useEffect(() => {
     if (!posts.error || !posts.isError) return;
@@ -34,11 +36,14 @@ export const PostsPage: React.FC = () => {
           <h2>Users List</h2>
           <ul>
             {posts.data?.posts.map((post) => (
-              <Link  key={post.id} to={`/post-info/${post.id}`}>
+              <Link key={post.id} to={`/post-info/${post.id}`}>
                 <PostCard post={post} />
               </Link>
             ))}
           </ul>
+          {posts.data && posts.data.total > skip + limit && (
+            <button onClick={loadMore}>Show More</button>
+          )}
         </div>
       )}
     </section>

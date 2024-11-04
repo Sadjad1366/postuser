@@ -18,13 +18,12 @@ export const fetchUsersLists:fetchUsersListsType = async() => {
       return response.data;
 }
 
-type fetchPostsListType = () => Promise<IFetchPostsResDto>;
-export const fetchPostsList: fetchPostsListType = async () => {
+type fetchPostsListType = (skip: number, limit: number) => Promise<IFetchPostsResDto>;
+export const fetchPostsList: fetchPostsListType = async (skip, limit) => {
   const client = generateClient();
-  const response = await client.get<IFetchPostsResDto>(urls.posts.list);
+  const response = await client.get<IFetchPostsResDto>(`${urls.posts.list}?skip=${skip}&limit=${limit}`);
   return response.data;
 };
-
 
 type fetchPostByIdType = (_: number) => Promise<IPost>;
 export const fetchPostById: fetchPostByIdType = async (id: number) => {
