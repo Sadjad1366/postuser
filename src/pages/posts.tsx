@@ -6,7 +6,6 @@ import PostCard from "../components/PostCard";
 import { Link } from "react-router-dom";
 import { IPost } from "../types/posts.type";
 
-
 export const PostsPage: React.FC = () => {
   const [allPosts, setAllPosts] = React.useState<IPost[]>([]);
   const [skip, setSkip] = React.useState(0);
@@ -27,11 +26,11 @@ export const PostsPage: React.FC = () => {
     }
   }, [posts.data]);
 
-  React.useEffect(() => {
-    if (!posts.error || !posts.isError) return;
-    throw new Error("AAA");
-    // passing AAA to error boundary
-  }, [posts.error, posts.isError]);
+  // React.useEffect(() => {
+  //   if (!posts.error || !posts.isError) return;
+  //   throw new Error("There is no posts");
+  //   // passing AAA to error boundary
+  // }, [posts.error, posts.isError]);
 
   return (
     <section>
@@ -41,14 +40,12 @@ export const PostsPage: React.FC = () => {
         <div>Error loading posts.</div>
       ) : (
         <div>
-          <h2>Posts List</h2>
-          <ul>
+          <h2 className="text-xl font-bold p-2">Posts List</h2>
+          <div>
             {allPosts.map((post) => (
-              <Link key={post.id} to={`/post-info/${post.id}`}>
-                <PostCard post={post} />
-              </Link>
+              <PostCard key={post.id} post={post} />
             ))}
-          </ul>
+          </div>
           {posts.data && posts.data.total > skip + limit && (
             <button onClick={loadMore}>Show More</button>
           )}

@@ -7,7 +7,6 @@ import { UsersPage } from "./pages/users";
 import { fetchPostByIdLoader, PostById } from "./pages/posts-byId";
 import { fetchUserByIdLoader, UserById } from "./pages/user-byId";
 import { UserPostsPage } from "./pages/userPostPage";
-// import { ErrorBoundary } from "./components/errorboundry";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +23,6 @@ const router = createBrowserRouter([
       {
         path: "posts",
         element: <PostsPage />,
-        // errorElement: <ErrorBoundary />,
       },
       {
         path: "post-info/:id",
@@ -34,19 +32,21 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <UsersPage />,
-        // errorElement: <ErrorBoundary />,
       },
       {
-        path: "user-info/:id",
+        path: "user/:id",
         element: <UserById/>,
+        children:[
+          {
+            path: "user/:id/posts",
+            element: <UserPostsPage />,
+          },
+        ],
         loader: fetchUserByIdLoader,
       },
+
       {
-        path: "user/:id/posts",
-        element: <UserPostsPage />,
-      },
-      {
-        path: "/404",
+        path: "/*",
         element: <NotFound />,
       },
     ],

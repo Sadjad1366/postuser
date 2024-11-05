@@ -40,7 +40,7 @@ export const UsersPage: React.FC = () => {
         <div>Error loading users.</div>
       ) : (
         <div>
-          <h2>Users List</h2>
+          <h2 className="font-bold text-xl p-2">Users List</h2>
           <ul>
             {allUsers.map((user) => (
                 <UserCard key={user.id} user={user} />
