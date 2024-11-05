@@ -6,6 +6,7 @@ import { PostsPage } from "./pages/posts";
 import { UsersPage } from "./pages/users";
 import { fetchPostByIdLoader, PostById } from "./pages/posts-byId";
 import { fetchUserByIdLoader, UserById } from "./pages/user-byId";
+import { UserPostsPage } from "./pages/userPostPage";
 // import { ErrorBoundary } from "./components/errorboundry";
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "user-info/:id",
         element: <UserById/>,
         loader: fetchUserByIdLoader,
+      },
+      {
+        path: "user/:id/posts",
+        element: <UserPostsPage />,
       },
       {
         path: "/404",

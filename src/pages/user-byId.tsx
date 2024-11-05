@@ -15,7 +15,7 @@ export const UserById: React.FC = () => {
   const loaderData = useLoaderData();
   const validId = !isNaN(Number(id));
 
-  console.log(loaderData);
+  console.log("loaderData ",loaderData);
 
   const user = useQuery({
     queryKey: ["fetching-users", id],

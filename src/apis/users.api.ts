@@ -10,6 +10,10 @@ interface IFetchUsersResDto extends IResDto {
 interface IFetchPostsResDto extends IResDto {
   posts: IPost[];
 }
+interface IFetchUserPostsResDto extends IResDto {
+  posts: IPost[];
+}
+
 
 type fetchUsersListsType = (
   skip: number,
@@ -47,4 +51,12 @@ export const fetchUserById: fetchUserByIdType = async (id: number) => {
   const client = generateClient();
   const response = await client.get<IUser>(urls.users.byId(id));
   return response.data;
+};
+
+
+type fetchUserPostsType = (_: number) => Promise<IPost[]>;
+export const fetchUserPosts: fetchUserPostsType = async (userId: number) => {
+  const client = generateClient();
+  const response = await client.get<IFetchUserPostsResDto>(urls.users.posts(userId));
+  return response.data.posts;
 };

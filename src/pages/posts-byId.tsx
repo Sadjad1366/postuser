@@ -15,7 +15,7 @@ export const PostById: React.FC = () => {
   const loaderData = useLoaderData();
   const validId = !isNaN(Number(id));
 
-  console.log(loaderData);
+  console.log("loaderData ",loaderData);
 
   const post = useQuery({
     queryKey: ["fetching-posts", id],
