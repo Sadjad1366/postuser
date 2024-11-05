@@ -5,23 +5,33 @@ import { generateClient } from "./client";
 import { urls } from "./urls";
 
 interface IFetchUsersResDto extends IResDto {
-      users: IUser[]
+  users: IUser[];
 }
 interface IFetchPostsResDto extends IResDto {
-      posts: IPost[]
-}
-type fetchUsersListsType = ()=> Promise<IFetchUsersResDto>;
-export const fetchUsersLists:fetchUsersListsType = async() => {
-      const client = generateClient();
-      const response = await client.get<IFetchUsersResDto>(urls.users.users)
-
-      return response.data;
+  posts: IPost[];
 }
 
-type fetchPostsListType = (skip: number, limit: number) => Promise<IFetchPostsResDto>;
+type fetchUsersListsType = (
+  skip: number,
+  limit: number
+) => Promise<IFetchUsersResDto>;
+export const fetchUsersLists: fetchUsersListsType = async (skip, limit) => {
+  const client = generateClient();
+  const response = await client.get<IFetchUsersResDto>(
+    `${urls.users.users}?skip=${skip}&limit=${limit}`
+  );
+  return response.data;
+};
+
+type fetchPostsListType = (
+  skip: number,
+  limit: number
+) => Promise<IFetchPostsResDto>;
 export const fetchPostsList: fetchPostsListType = async (skip, limit) => {
   const client = generateClient();
-  const response = await client.get<IFetchPostsResDto>(`${urls.posts.list}?skip=${skip}&limit=${limit}`);
+  const response = await client.get<IFetchPostsResDto>(
+    `${urls.posts.list}?skip=${skip}&limit=${limit}`
+  );
   return response.data;
 };
 
