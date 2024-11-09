@@ -8,13 +8,12 @@ import { Link } from "react-router-dom";
 
 export const PostCard:React.FC<{post:IPost}> = ({ post}) => {
   return (
-    <div className="bg-slate-200 flex flex-col gap-y-3 my-3 px-2">
-      <div className="text-center font-bold text-xl">
+    <div className="bg-slate-200 flex flex-col gap-y-3 my-3 p-4 shadow-lg rounded-lg">
+      <div className="font-bold text-xl truncate">
       <Link  to={`/post-info/${post.id}`}> {post.title}</Link >
       </div>
-      <div className="text-xl font-medium">{post.body}</div>
+      <div className="text-xl font-medium line-clamp-3">{post.body}</div>
       <div className="flex gap-x-3"> {post.tags.map((tag) => <div>{tag}</div>)}</div>
-      <div>userId: {post.userId}</div>
       <div className="flex gap-x-4">
       <div className="flex justify-center items-center"><AiOutlineLike /> {post.reactions.likes}</div>
         <div className="flex justify-center items-center"><AiTwotoneDislike/> {post.reactions.dislikes}</div>

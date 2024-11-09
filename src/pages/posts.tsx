@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPostsList } from "../apis/users.api";
 import React from "react";
 import PostCard from "../components/PostCard";
-import { Link } from "react-router-dom";
 import { IPost } from "../types/posts.type";
 
 export const PostsPage: React.FC = () => {
@@ -33,7 +32,7 @@ export const PostsPage: React.FC = () => {
   // }, [posts.error, posts.isError]);
 
   return (
-    <section>
+    <section className="container mx-auto">
       {posts.isLoading && allPosts.length === 0 ? (
         <div>Loading posts...</div>
       ) : posts.isError ? (
@@ -41,7 +40,7 @@ export const PostsPage: React.FC = () => {
       ) : (
         <div>
           <h2 className="text-xl font-bold p-2">Posts List</h2>
-          <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {allPosts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}

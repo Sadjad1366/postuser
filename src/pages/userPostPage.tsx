@@ -39,7 +39,7 @@ export const UserPostsPage: React.FC = () => {
       ) : userPosts.isError ? (
         <div>Error loading user posts.</div>
       ) : (
-        <div className="flex flex-col gap-3 px-2">
+        <div className="flex flex-col gap-3">
           {userPosts.data?.map((post: IPost) => (
             <div key={post.id}>
               <div className="bg-slate-400 rounded-lg mt-2 p-3 flex flex-col gap-3">

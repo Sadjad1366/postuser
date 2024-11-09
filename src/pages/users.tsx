@@ -5,7 +5,6 @@ import React from "react";
 import UserCard from "../components/UserCard";
 import { IUser } from "../types/userType";
 
-
 export const UsersPage: React.FC = () => {
   const [allUsers, setAllUsers] = React.useState<IUser[]>([]);
   const [skip, setSkip] = React.useState(0);
@@ -33,7 +32,7 @@ export const UsersPage: React.FC = () => {
   }, [users.error, users.isError]);
 
   return (
-    <section>
+    <section className="container mx-auto">
       {users.isLoading && allUsers.length === 0 ? (
         <div>Loading users...</div>
       ) : users.isError ? (
@@ -41,13 +40,20 @@ export const UsersPage: React.FC = () => {
       ) : (
         <div>
           <h2 className="font-bold text-xl p-2">Users List</h2>
-          <ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {allUsers.map((user) => (
-                <UserCard key={user.id} user={user} />
+              <UserCard key={user.id} user={user} />
             ))}
-          </ul>
+          </div>
           {users.data && users.data.total > skip + limit && (
-            <button onClick={loadMore}>Show More</button>
+      <div className="flex justify-center items-center">
+              <button
+              className="bg-slate-700 text-white hover:bg-slate-500 mt-3 p-3 rounded-lg"
+              onClick={loadMore}
+            >
+              Show More
+            </button>
+      </div>
           )}
         </div>
       )}

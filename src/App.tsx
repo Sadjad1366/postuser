@@ -7,6 +7,7 @@ import { UsersPage } from "./pages/users";
 import { fetchPostByIdLoader, PostById } from "./pages/posts-byId";
 import { fetchUserByIdLoader, UserById } from "./pages/user-byId";
 import { UserPostsPage } from "./pages/userPostPage";
+import HomePage from "./pages/homePage";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <div>
-            <h1 className="underline font-bold">Hello World</h1>
-          </div>
-        )
+        element: <HomePage/>
       },
       {
         path: "posts",
