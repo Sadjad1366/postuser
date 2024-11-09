@@ -40,9 +40,14 @@ export const PostsPage: React.FC = () => {
       ) : (
         <div>
           <h2 className="text-xl font-bold p-2">Posts List</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {allPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allPosts.map((post, index) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                className="animate-shuffle" // Apply the shuffling animation defined in Tailwind config
+                style={{ animationDelay: `${index * 300}ms` }} // Apply staggered delay of 100ms between each post
+              />
             ))}
           </div>
           {posts.data && posts.data.total > skip + limit && (

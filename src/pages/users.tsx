@@ -41,19 +41,24 @@ export const UsersPage: React.FC = () => {
         <div>
           <h2 className="font-bold text-xl p-2">Users List</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allUsers.map((user) => (
-              <UserCard key={user.id} user={user} />
+            {allUsers.map((user, index) => (
+              <UserCard
+                key={user.id}
+                user={user}
+                className={`animate-shuffle`}
+                style={{ animationDelay: `${index * 300}ms` }} // Adding a delay of 100ms between each card
+              />
             ))}
           </div>
           {users.data && users.data.total > skip + limit && (
-      <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center">
               <button
-              className="bg-slate-700 text-white hover:bg-slate-500 mt-3 p-3 rounded-lg"
-              onClick={loadMore}
-            >
-              Show More
-            </button>
-      </div>
+                className="bg-blue-700 text-white hover:bg-blue-500 mt-3 p-3 rounded-lg"
+                onClick={loadMore}
+              >
+                Show More
+              </button>
+            </div>
           )}
         </div>
       )}
