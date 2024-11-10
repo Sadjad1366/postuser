@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes wave {
+/* @keyframes wave {
       0% {
         transform: translateY(0);
       }
@@ -12,7 +12,7 @@
       100% {
         transform: translateY(0);
       }
-    }
+    } */
 
     .animate-wave {
       animation: wave 5s ease-in-out infinite;

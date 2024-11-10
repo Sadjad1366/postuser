@@ -1,7 +1,10 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { Navigate, useParams, useLoaderData, LoaderFunctionArgs } from "react-router-dom";
+import { Navigate, useParams,
+  //  useLoaderData,
+  //  LoaderFunctionArgs
+   } from "react-router-dom";
 import { fetchPostById } from "../apis/users.api";
 import { fetchPostComments } from "../apis/users.api";
 import { IComment } from "../types/commentType";
@@ -11,9 +14,9 @@ import { FaThumbsUp, FaThumbsDown, FaComments } from 'react-icons/fa';
 
 export const PostById: React.FC = () => {
   const { id } = useParams();
-  const loaderData = useLoaderData();
+  // const loaderData = useLoaderData();
   const validId = !isNaN(Number(id));
-console.log(loaderData);
+// console.log(loaderData);
 
 
   const post = useQuery({
@@ -40,7 +43,7 @@ console.log(loaderData);
 
 
 return (
-  <div className="flex flex-col p-6 gap-5 bg-white rounded-lg shadow-md">
+  <div className="flex flex-col p-6 gap-5 bg-white rounded-lg shadow-md container mx-auto">
     {/* Post Title */}
     <h2 className="font-semibold text-2xl text-gray-800">{post.data?.title}</h2>
 
@@ -100,12 +103,12 @@ return (
 );
 };
 
-export const fetchPostByIdLoader = async (data: LoaderFunctionArgs) => {
-  let post = undefined;
-  try {
-    post = await fetchPostById(Number(data.params.id));
-  } catch (error) {
-    console.log("error", error);
-  }
-  return { post };
-};
+// export const fetchPostByIdLoader = async (data: LoaderFunctionArgs) => {
+//   let post = undefined;
+//   try {
+//     post = await fetchPostById(Number(data.params.id));
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+//   return { post };
+// };

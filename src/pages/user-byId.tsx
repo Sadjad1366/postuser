@@ -31,7 +31,7 @@ export const UserById: React.FC = () => {
   }
 
   return (
-    <div className="px-2 py-8">
+    <div className="px-2 py-8 container mx-auto">
       <div className="flex flex-col bg-white rounded-lg shadow-md p-6">
         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8">
           <img className="w-32 h-32 rounded-full object-cover" src={user.data?.image} alt={user.data?.username} />
@@ -45,11 +45,11 @@ export const UserById: React.FC = () => {
         <div className="mt-6 grid grid-cols-2 gap-4">
           <div className="flex items-center">
             <FaUserCircle className="text-gray-500 mr-2" />
-            <p>{user.data?.username}</p>
+            <p>Name: {user.data?.firstName}{user.data?.lastName}</p>
           </div>
           <div className="flex items-center">
             <FaEnvelope className="text-gray-500 mr-2" />
-            <p>{user.data?.email}</p>
+            <p>email: {user.data?.email}</p>
           </div>
           <div className="flex items-center">
             <FaBirthdayCake className="text-gray-500 mr-2" />

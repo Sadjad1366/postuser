@@ -1,12 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { MainLayout } from "./layouts/main";
-import { NotFound } from "./pages/Not-found";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { PostsPage } from "./pages/posts";
-import { UsersPage } from "./pages/users";
-import { fetchPostByIdLoader, PostById } from "./pages/posts-byId";
+import {
+  // fetchPostByIdLoader,
+  PostById } from "./pages/posts-byId";
 import { fetchUserByIdLoader, UserById } from "./pages/user-byId";
 import { UserPostsPage } from "./pages/userPostPage";
+import { MainLayout } from "./layouts/main";
+import { NotFound } from "./pages/Not-found";
+import { PostsPage } from "./pages/posts";
+import { UsersPage } from "./pages/users";
 import HomePage from "./pages/homePage";
 
 const router = createBrowserRouter([
@@ -15,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>
+        element: <HomePage />,
       },
       {
         path: "posts",
@@ -23,8 +25,8 @@ const router = createBrowserRouter([
       },
       {
         path: "post-info/:id",
-        element: <PostById/>,
-        loader: fetchPostByIdLoader,
+        element: <PostById />,
+        // loader: fetchPostByIdLoader,
       },
       {
         path: "users",
@@ -32,8 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: "user/:id",
-        element: <UserById/>,
-        children:[
+        element: <UserById />,
+        children: [
           {
             path: "user/:id/posts",
             element: <UserPostsPage />,
@@ -54,9 +56,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </QueryClientProvider>
-
   );
 }
 

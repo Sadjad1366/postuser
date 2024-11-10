@@ -30,7 +30,7 @@ export const UserPostsPage: React.FC = () => {
     setSelectedPostId(selectedPostId === postId ? null : postId);
   };
   return (
-    <div>
+    <div className="container mx-auto">
       <h2 className="font-semibold text-2xl">
         User Posts
       </h2>

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { fetchPostsList } from "../apis/users.api";
 import React from "react";
 import PostCard from "../components/PostCard";
@@ -14,7 +13,6 @@ export const PostsPage: React.FC = () => {
     queryKey: ["fetching-posts", skip],
     queryFn: () => fetchPostsList(skip, limit),
   });
-
   const loadMore = () => {
     setSkip(skip + limit);
   };
@@ -24,12 +22,6 @@ export const PostsPage: React.FC = () => {
       setAllPosts([...allPosts, ...posts.data.posts]);
     }
   }, [posts.data]);
-
-  // React.useEffect(() => {
-  //   if (!posts.error || !posts.isError) return;
-  //   throw new Error("There is no posts");
-  //   // passing AAA to error boundary
-  // }, [posts.error, posts.isError]);
 
   return (
     <section className="container mx-auto">
